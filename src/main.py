@@ -25,9 +25,9 @@ def main():
         print("Currency set to CAD in local storage.")
 
         # Check if there are queries in the file
-        if len(SEARCH_QUERIES) > 8:  # Ensure there is a ninth query
-            ninth_query = SEARCH_QUERIES[8]  # Get the ninth query (EB01)
-            url = f"https://app.getcollectr.com/?query={ninth_query}"  # Construct the URL
+        if len(SEARCH_QUERIES) > 0:  # Ensure there is at least one query
+            last_query = SEARCH_QUERIES[-1]  # Get the last query (OP10)
+            url = f"https://app.getcollectr.com/?query={last_query}"  # Construct the URL
             print(f"Navigating to URL: {url}")
 
             # Navigate to the constructed URL
@@ -36,11 +36,11 @@ def main():
             # Create an instance of the Scraper class
             scraper = Scraper(driver)
 
-            # Perform the search and scrape for the ninth query
-            print(f"Scraping data for query: {ninth_query}")
-            scraper.search_and_scrape(ninth_query)
+            # Perform the search and scrape for the last query
+            print(f"Scraping data for query: {last_query}")
+            scraper.search_and_scrape(last_query)
         else:
-            print("No ninth query found in queries.txt")
+            print("No queries found in queries.txt")
 
     finally:
         # Close the WebDriver
